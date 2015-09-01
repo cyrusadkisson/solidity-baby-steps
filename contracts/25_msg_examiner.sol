@@ -22,28 +22,28 @@ contract msgExaminer {
         contract_creation_tx_origin = tx.origin;
     }
 	
-	function getContractCreationData() constant returns (bytes) 		// return val should change depending on the input
+	function getContractCreationData() constant returns (bytes) 		
     {										              			
     	return contract_creation_data;
     }
 	
-	function getContractCreationGas() constant returns (uint) 		// return val should change depending on the input
-    {										              			
+	function getContractCreationGas() constant returns (uint) 	// returned 732117 for me. Must be the gas expended 
+    {										              		// the creation of this contract. msg.gas should be msg.gasExpended	
     	return contract_creation_gas;
     }
 	
-    function getContractCreationValue() constant returns (uint) 		// return val should change depending on the input
-    {										              			
-    	return contract_creation_value;
+    function getContractCreationValue() constant returns (uint) // returns the original endowment of the contract
+    {										              		// set at creation time with "value: <someweivalue>"	
+    	return contract_creation_value;                         // this is now the "balance" of the contract
     }
     
-    function getContractCreationTxGasprice() constant returns (uint) 	
-    {											     	
+    function getContractCreationTxGasprice() constant returns (uint) // returned 50000000000 for me. Must be the gasprice 	
+    {											     				 // the sender is willing to pay. msg.gasPrice should be msg.gasLimit
     	return contract_creation_tx_gasprice;
     }
     
-    function getContractCreationTxOrigin() constant returns (address) 
-    {											     
+    function getContractCreationTxOrigin() constant returns (address) // returned my coinbase address.
+    {											     				  //  Not sure if a chain of transactions would return the same.
     	return contract_creation_tx_origin;
     }
     
@@ -79,11 +79,6 @@ contract msgExaminer {
     }
     
     
-    function getMsgData() constant returns (bytes)			// "returns data sent with tx"? This one or the one that created the contract?
-    {
-    	return msg.data;
-    }
-    
     function getMsgDataBefore() constant returns (bytes)          
     {						
     	return msg_data_before_creator_send;							  
@@ -94,12 +89,6 @@ contract msgExaminer {
     	return msg_data_after_creator_send;							  
     }
     
-    
-    
-    function getMsgGas() constant returns (uint)			// "remaining gas" Of what? This call or the contact?
-    {
-    	return msg.gas;
-    }
     
     function getMsgGasBefore() constant returns (uint)          
     {						
@@ -112,13 +101,6 @@ contract msgExaminer {
     }
     
    
-   
-    
-    function getMsgValue() constant returns (uint)			// "returns amt of wei sent with the message" This call or the whole contract?
-    {
-    	return msg.value;
-    }
-    
     function getMsgValueBefore() constant returns (uint)          
     {						
     	return msg_value_before_creator_send;							  
@@ -128,7 +110,6 @@ contract msgExaminer {
     {						
     	return msg_value_after_creator_send;							  
     }
- 
  
  
     

@@ -1,25 +1,31 @@
-contract greeter {
-    address owner;
-    string greeting;
+/* 
+	The following is an extremely basic example of a solidity contract. 
+	See below for more detail.
+*/
 
-    function greeter(string _greeting) public {
-        owner = msg.sender; 
+contract Greeter 										// The contract definition. A constructor of the same name will be automatically called on contract creation. 
+{
+    address owner;										// At first, an empty "address"-type variable of the name "owner". Will be set in the constructor.
+    string greeting;									// At first, an empty "string"-type variable of the name "greeting". Will be set in constructor and can be changed.
+
+    function Greeter(string _greeting) public 			// The constructor. It accepts a string input and saves it to the contract's "greeting" variable.
+    {
+        owner = msg.sender; 							// Records who created this contract.
         greeting = _greeting;
     }
-    
-    /* Function to recover the funds on the contract */
-    function kill() { if (msg.sender == owner) suicide(owner); }
 
-    /* main function */
-    function greet() constant returns (string) {
+    function greet() constant returns (string)          
+    {
         return greeting;
     }
     
-    function getBlockNumber() constant returns (uint) {
+    function getBlockNumber() constant returns (uint) 
+    {
         return block.number;
     }
     
-    function setGreeting(string _newgreeting) {
+    function setGreeting(string _newgreeting) 
+    {
         greeting = _newgreeting;
     }
     
@@ -27,16 +33,11 @@ contract greeter {
      Standard kill() function to recover funds 
      **********/
     
-    function kill() returns (bool) 
+    function kill()
     { 
         if (msg.sender == creator)
         {
             suicide(creator);  // kills this contract and sends remaining funds back to creator
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 
