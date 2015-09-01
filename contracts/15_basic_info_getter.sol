@@ -33,23 +33,23 @@ contract basicInfoGetter {
 //		return block.blockhash;
 //  }
     
-    function getBlockTimestamp() constant returns (uint)   // returns current block timestamp in SECONDS (not ms) from epoch
+    function getBlockTimestamp() constant returns (uint) // returns current block timestamp in SECONDS (not ms) from epoch
     {													
     	return block.timestamp; // also "now" == "block.timestamp", as in "return now;"
     }
     
-    function getMsgData() constant returns (bytes) 		  // UNSURE: this always returns "0xc8e7ca2e" for me, regardless of account/computer I'm requesting from.
-    {										              // adding an input parameter would probably change it with each diff call?
+    function getMsgData() constant returns (bytes) 		// UNSURE: this always returns "0xc8e7ca2e" for me, regardless of account/computer I'm requesting from.
+    {										            // adding an input parameter would probably change it with each diff call?
     	return msg.data;
     }
     
-    function getMsgGas() constant returns (uint)          // UNSURE: returns gas remaining on this contract? Always returns 49978451 for me.
-    {													  // would adding an input parameter change this value?
+    function getMsgGas() constant returns (uint)        // UNSURE: returns gas remaining on this contract? Always returns 49978451 for me.
+    {													// would adding an input parameter change this value?
     	return msg.gas;
     }
     
-    function getMsgSender() constant returns (address)    // returns the address of whomever made this call
-    {													  // not necessarily the creator of the contract
+    function getMsgSender() constant returns (address)  // returns the address of whomever made this call
+    {													// not necessarily the creator of the contract
     	return msg.sender;
     }
     
@@ -58,8 +58,8 @@ contract basicInfoGetter {
     	return msg.value;
     }
     
-    function getTxGasprice() constant returns (uint) // returns gasprice of this transaction
-    {											   // Does tx exist on constant functions?
+	function getTxGasprice() constant returns (uint) 	// returns gasprice required when contract deployed? Returns 50000000, so if msg.gas 
+    {											     	// is what is remaining (49978451), then that makes sense as the cost to deploy was the diff.
     	return tx.gasprice;
     }
     
