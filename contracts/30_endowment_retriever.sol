@@ -1,8 +1,7 @@
 contract EndowmentRetriever {
 
     address creator;
-  
-    uint contract_creation_value;
+    uint contract_creation_value; // original endowment
 
     function EndowmentRetriever() public 
     {

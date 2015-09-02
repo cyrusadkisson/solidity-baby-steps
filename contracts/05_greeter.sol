@@ -1,6 +1,5 @@
 /* 
 	The following is an extremely basic example of a solidity contract. 
-	See below for more detail.
 */
 
 contract Greeter 										// The contract definition. A constructor of the same name will be automatically called on contract creation. 

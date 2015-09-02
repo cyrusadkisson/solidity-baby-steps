@@ -1,7 +1,7 @@
 contract creatorBalanceChecker {
 
     address creator;
-    uint creatorbalance;
+    uint creatorbalance; 		// TIP: uint is an alias for uint256. Ditto int and int256.
 
     function creatorBalanceChecker() public 
     {
