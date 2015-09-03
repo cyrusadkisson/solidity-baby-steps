@@ -1,9 +1,9 @@
-contract incrementer {
+contract Incrementer {
 
     address creator;
     uint iteration;
 
-    function incrementer() public 
+    function Incrementer() public 
     {
         creator = msg.sender; 
         iteration = 0;
