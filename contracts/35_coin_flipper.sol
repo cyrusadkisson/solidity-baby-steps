@@ -8,12 +8,16 @@
 // At first I thought "Wait, if we have to use the block in past, couldn't the gambler know that?" And the answer is "no". 
 // All the gambler knows at the time of bet submission is 180,000. We use 180,001 which is brand new and known and 180,002 is underway.
 
-// NOTE: Use more gas on the betAndFlip(). I set mine to 1,000,000 and the rest is automatically refunded (I think). At current prices 9/3/2015, that's negligible anyway.
+// NOTE: This contract is only meant to be used by you for testing purposes. I'm not responsible for lost funds if it's not bulletproof.
+// 		 You can change msg.sender.send(...) to creator.send(...) in betAndFlip() to make sure funds only go back to YOUR account. 
+
+// NOTE: I don't know how this will behave with multiple potential bettors (or even just bets) per block. It is meant for your single, one-per-block use only.
+
+// NOTE: Use more gas on the betAndFlip(). I set mine to 1,000,000 and the rest is automatically refunded (I think). At current prices 9/3/2015, it's negligible anyway.
 
 contract CoinFlipper {
 
     address creator;
-    uint contract_creation_value;	// original endowment
     int lastgainloss;
     string lastresult;
     uint lastblocknumberused;
@@ -33,6 +37,7 @@ contract CoinFlipper {
     
     // this is probably unnecessary and gas-wasteful. The lastblockhashused should be random enough. Adding the rest of these deterministic factors doesn't change anything. 
     // This does, however, let the bettor introduce a random seed by wagering different amounts. wagering 1 ETH will produce a completely different hash than 1.000000001 ETH
+    
     function sha(uint128 wager) constant private returns(uint256)  	// DISCLAIMER: This is pretty random... but not truly random.
     { 
         return uint256(sha3(block.difficulty, block.coinbase, now, lastblockhashused, wager));  
