@@ -1,3 +1,6 @@
+// This contract demonstrates a simple non-constant (transactional) function you can call from geth.
+// increment() takes no parameters and merely increments the "iteration" value. 
+
 contract Incrementer {
 
     address creator;
