@@ -5,15 +5,20 @@
 // 2. Deploy Ping, giving it the address of Pong.
 // 3. Call Ping.getPongvalRemote() using a sendTransaction...
 // 4. ... which retreives the value of pongval from Pong.
-// 5. If successful Ping.getPongval() should return the value from step 3.
+// 5. If successful Ping.getPongval() should return the value from step 1.
 
 contract PongvalRetriever {
-	int8 public pongval;
+ 	int8 pongval_tx_retrieval_attempted = 0;
+	function getPongvalTransactional() public returns (int8){
+		pongval_tx_retrieval_attempted = -1;
+		return pongval_tx_retrieval_attempted;
+	}
 }
 
 contract Pong is PongvalRetriever{
 
     address creator;
+    int8 pongval;
 
 	/*********
  	 Step 1: Deploy Pong
@@ -25,12 +30,13 @@ contract Pong is PongvalRetriever{
     }
 	
 	/*********
-	 Step 4. Transactionally return pongval.
+	 Step 4. Transactionally return pongval, overriding PongvalRetriever
 	 *********/	
-//	function getPongvalTransactional() public returns (int8)
-//    {
-//    	return pongval;
-//    }
+	function getPongvalTransactional() public returns (int8)
+    {
+    	pongval_tx_retrieval_attempted = 1;
+    	return pongval;
+    }
     
 // ----------------------------------------------------------------------------------------------------------------------------------------
     
@@ -45,6 +51,19 @@ contract Pong is PongvalRetriever{
 	function setPongval(int8 _pongval)
 	{
 		pongval = _pongval;
+	}
+	
+	function getPongvalTxRetrievalAttempted() constant returns (int8)
+	{
+		return pongval_tx_retrieval_attempted;
+	}
+	
+	/****
+	 For double-checking this contract's address
+	 ****/
+	function getAddress() constant returns (address)
+	{
+		return this;
 	}
 	
     /**********
@@ -62,7 +81,7 @@ contract Pong is PongvalRetriever{
 
 /*
 
-var _pongval = -56;
+var _pongval = 80 ;
 
 var pongContract = web3.eth.contract([{
     "constant": false,
@@ -89,9 +108,9 @@ var pongContract = web3.eth.contract([{
     "outputs": [],
     "type": "function"
 }, {
-    "constant": true,
+    "constant": false,
     "inputs": [],
-    "name": "pongval",
+    "name": "getPongvalTransactional",
     "outputs": [{
         "name": "",
         "type": "int8"
@@ -107,7 +126,7 @@ var pongContract = web3.eth.contract([{
 var pong = pongContract.new(
     _pongval, {
         from: web3.eth.accounts[0],
-        data: '606060405260405160208061025c8339016040526060805190602001505b33600060016101000a81548173ffffffffffffffffffffffffffffffffffffffff0219169083021790555080600060156101000a81548160ff02191690837f01000000000000000000000000000000000000000000000000000000000000009081020402179055505b506101c6806100966000396000f30060606040526000357c01000000000000000000000000000000000000000000000000000000009004806323a1c2711461005a57806340193d171461006d57806341c0e1b514610091578063809e99241461009e57610058565b005b61006b6004803590602001506100f1565b005b6100786004506100d5565b604051808260000b815260200191505060405180910390f35b61009c600450610132565b005b6100a96004506100c2565b604051808260000b815260200191505060405180910390f35b600060009054906101000a900460000b81565b6000600060159054906101000a900460000b90506100ee565b90565b80600060156101000a81548160ff02191690837f01000000000000000000000000000000000000000000000000000000000000009081020402179055505b50565b600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156101c357600060019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b5b56',
+        data: '60606040526040516020806102658339016040526060805190602001505b33600060006101000a81548173ffffffffffffffffffffffffffffffffffffffff0219169083021790555080600060146101000a81548160ff02191690837f01000000000000000000000000000000000000000000000000000000000000009081020402179055505b506101cf806100966000396000f30060606040526000357c01000000000000000000000000000000000000000000000000000000009004806323a1c2711461005a57806340193d171461006d57806341c0e1b514610091578063fb5d57291461009e57610058565b005b61006b60048035906020015061018e565b005b610078600450610172565b604051808260000b815260200191505060405180910390f35b61009c6004506100c2565b005b6100a9600450610156565b604051808260000b815260200191505060405180910390f35b600060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561015357600060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b5b565b6000600060149054906101000a900460000b905061016f565b90565b6000600060149054906101000a900460000b905061018b565b90565b80600060146101000a81548160ff02191690837f01000000000000000000000000000000000000000000000000000000000000009081020402179055505b5056',
         gas: 1000000
     },
     function(e, contract) {
