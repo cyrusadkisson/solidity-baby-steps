@@ -90,9 +90,18 @@ contract Ping is PongvalRetriever {
 
 /*
 
-var _pongAddress =0xc57e0801aee526cddf9ad4302c54cc2d23cf6b09;
+var _pongAddress =  web3.toBigNumber( '0xe1261b9996c5582a4352065aa269d40e74a91927') ;
 
 var pingContract = web3.eth.contract([{
+    "constant": false,
+    "inputs": [],
+    "name": "getAddress",
+    "outputs": [{
+        "name": "",
+        "type": "address"
+    }],
+    "type": "function"
+}, {
     "constant": false,
     "inputs": [{
         "name": "_pongAddress",
@@ -108,19 +117,19 @@ var pingContract = web3.eth.contract([{
     "outputs": [],
     "type": "function"
 }, {
-    "constant": false,
-    "inputs": [],
-    "name": "kill",
-    "outputs": [],
-    "type": "function"
-}, {
     "constant": true,
     "inputs": [],
-    "name": "getPongval",
+    "name": "getPongvalConstant",
     "outputs": [{
         "name": "",
         "type": "int8"
     }],
+    "type": "function"
+}, {
+    "constant": false,
+    "inputs": [],
+    "name": "kill",
+    "outputs": [],
     "type": "function"
 }, {
     "constant": true,
@@ -150,7 +159,7 @@ var pingContract = web3.eth.contract([{
 var ping = pingContract.new(
     _pongAddress, {
         from: web3.eth.accounts[0],
-        data: '',
+        data: '60606040526000600060006101000a81548160ff02191690837f01000000000000000000000000000000000000000000000000000000000000009081020402179055506040516020806104dd8339016040526060805190602001505b33600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908302179055507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff600060016101000a81548160ff02191690837f010000000000000000000000000000000000000000000000000000000000000090810204021790555080600060026101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908302179055505b506103be8061011f6000396000f3006060604052361561007f576000357c01000000000000000000000000000000000000000000000000000000009004806338cc48311461008157806339df1608146100b85780633af94817146100cb57806340193d17146100d857806341c0e1b5146100fc578063fab43cb114610109578063fb5d5729146101405761007f565b005b61008c600450610272565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100c9600480359060200150610214565b005b6100d66004506102f8565b005b6100e36004506101f8565b604051808260000b815260200191505060405180910390f35b610107600450610164565b005b610114600450610243565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b61014b60045061027f565b604051808260000b815260200191505060405180910390f35b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614156101f557600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b5b565b6000600060019054906101000a900460000b9050610211565b90565b80600060026101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908302179055505b50565b6000600060029054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905061026f565b90565b600030905061027c565b90565b60007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff600060006101000a81548160ff02191690837f0100000000000000000000000000000000000000000000000000000000000000908102040217905550600060009054906101000a900460000b90506102f5565b90565b600060029054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663fb5d5729604051817c01000000000000000000000000000000000000000000000000000000000281526004018090506020604051808303816000876161da5a03f1156100025750505060405151600060016101000a81548160ff02191690837f01000000000000000000000000000000000000000000000000000000000000009081020402179055505b56',
         gas: 1000000
     },
     function(e, contract) {
@@ -158,6 +167,6 @@ var ping = pingContract.new(
             console.log(e, contract);
             console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
         }
-    })
+    });
     
     */
