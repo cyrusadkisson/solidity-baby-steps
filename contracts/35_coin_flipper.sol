@@ -1,6 +1,6 @@
 // This contract is designed to demonstrate the generation of a random number.
 // If you submit a betAndFlip() request after block 180,000 has just been mined,
-// (i.e. block 180,000 is the "best block" on stats.ethdev.gov and the most recent listed on any block explorer site), 
+// (i.e. when block 180,000 is the "best block" on stats.ethdev.gov and the most recent listed on any block explorer site), 
 // then the transaction will get mined/processed in block 180,001. (most of the time, anyway... it may be a block or two later)
 // Once the transaction is mined, then block.number will become 180,002 while the flipping is underway.
 // Any attempt to get block.blockhash(180,002) will return 0x000000000...
