@@ -1,3 +1,6 @@
+// This is supposed to allow for examination of msgs, but it proved less than informative. 
+// I'd just skip this for now.
+
 contract msgExaminer {
 
     address creator;
@@ -117,17 +120,10 @@ contract msgExaminer {
      Standard kill() function to recover funds 
      **********/
     
-    function kill() returns (bool) 
+    function kill()
     { 
         if (msg.sender == creator)
-        {
             suicide(creator);  // kills this contract and sends remaining funds back to creator
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
         
 }

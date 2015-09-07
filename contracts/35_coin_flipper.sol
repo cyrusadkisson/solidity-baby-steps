@@ -11,7 +11,7 @@
 // NOTE: This contract is only meant to be used by you for testing purposes. I'm not responsible for lost funds if it's not bulletproof.
 // 		 You can change msg.sender.send(...) to creator.send(...) in betAndFlip() to make sure funds only go back to YOUR account. 
 
-// NOTE: I don't know how this will behave with multiple potential bettors (or even just bets) per block. It is meant for your single, one-per-block use only.
+// NOTE: I don't know how this will behave with multiple potential bettors (or even just multiple bets) per block. It is meant for your single, one-per-block use only.
 
 // NOTE: Use more gas on the betAndFlip(). I set mine to 1,000,000 and the rest is automatically refunded (I think). At current prices 9/3/2015, it's negligible anyway.
 
@@ -115,9 +115,7 @@ contract CoinFlipper {
     function kill()
     { 
         if (msg.sender == creator)
-        {
             suicide(creator);  // kills this contract and sends remaining funds back to creator
-        }
     }
 }
 

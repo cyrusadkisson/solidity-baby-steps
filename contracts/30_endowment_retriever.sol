@@ -5,13 +5,13 @@ contract EndowmentRetriever {
 
     function EndowmentRetriever() public 
     {
-        creator = msg.sender; 								// msg is a global variable
+        creator = msg.sender; 								
         contract_creation_value = msg.value;  				// the endowment of this contract in wei 
     }
 	
     function getContractCreationValue() constant returns (uint) // returns the original endowment of the contract
     {										              		// set at creation time with "value: <someweivalue>"	
-    	return contract_creation_value;                         // this is now the "balance" of the contract
+    	return contract_creation_value;                         // this was the "balance" of the contract at creation time
     }
     
     function sendOneEtherHome() public         	

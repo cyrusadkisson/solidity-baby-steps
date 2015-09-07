@@ -1,3 +1,9 @@
+/* 
+	Another very basic contract. It demonstrates that a contract can retrieve and store the 
+	balance of its creator address. Note that the creatorbalance value captured in the constructor is a snapshot in time.
+	Later on, creator.balance will reflect whatever it is now.
+*/
+
 contract creatorBalanceChecker {
 
     address creator;
@@ -28,17 +34,10 @@ contract creatorBalanceChecker {
      Standard kill() function to recover funds 
      **********/
     
-    function kill() returns (bool) 
+    function kill()
     { 
         if (msg.sender == creator)
-        {
             suicide(creator);  // kills this contract and sends remaining funds back to creator
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
         
 }

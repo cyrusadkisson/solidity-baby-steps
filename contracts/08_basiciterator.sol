@@ -1,3 +1,6 @@
+/*
+	This is a very simple demonstration of a while loops. Same as JS/c.
+*/
 
 contract BasicIterator {
 

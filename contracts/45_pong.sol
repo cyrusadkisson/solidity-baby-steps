@@ -73,15 +73,15 @@ contract Pong is PongvalRetriever{
     function kill()
     { 
         if (msg.sender == creator)
-        {
             suicide(creator);  // kills this contract and sends remaining funds back to creator
-        }
     }
 }
 
 /*
 
-var _pongval = -12 ;
+var _pongval = -87 ;
+
+// define the Pong contract w/ ABI
 
 var pongContract = web3.eth.contract([{
     "constant": false,
@@ -141,6 +141,9 @@ var pongContract = web3.eth.contract([{
     }],
     "type": "constructor"
 }]);
+
+//  publish the contract
+
 var pong = pongContract.new(
     _pongval, {
         from: web3.eth.accounts[0],
@@ -148,9 +151,17 @@ var pong = pongContract.new(
         gas: 1000000
     },
     function(e, contract) {
-        if (typeof contract.address != 'undefined') {
-            console.log(e, contract);
-            console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+        if (!e) {
+            if (!contract.address) {
+                console.log('Contract transaction sent! TransactionHash: ' + contract.transactionHash + ' waiting to be mined...');
+            } else {
+                console.log('Contract mined! Address: ' + contract.address);
+                console.log(contract);
+            }
         }
     })
+    
+// Now deploy Ping with the address of Pong.
+    
+    
 */

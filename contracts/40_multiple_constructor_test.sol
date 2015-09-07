@@ -1,3 +1,5 @@
+// Just testing to see if you can have multiple constructors. Nope!
+
 contract MultipleConstructorTest {
 
     address creator;
@@ -51,8 +53,6 @@ contract MultipleConstructorTest {
     function kill()
     { 
         if (msg.sender == creator)
-        {
             suicide(creator);  // kills this contract and sends remaining funds back to creator
-        }
     }
 }

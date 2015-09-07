@@ -1,4 +1,4 @@
-// Supposedly, contracts can get non-constant return values from other contracts. (Whereas you can't from web3/geth.)
+// Contracts can get non-constant return values from functions in other contracts. (Whereas you can't from web3/geth.)
 // These two contracts are meant to test this. Like so:
 
 // 1. Deploy Pong with a pongval.
@@ -81,16 +81,14 @@ contract Ping is PongvalRetriever {
     function kill()
     { 
         if (msg.sender == creator)
-        {
             suicide(creator);  // kills this contract and sends remaining funds back to creator
-        }
     }
 }
 
 
 /*
 
-var _pongAddress =  web3.toBigNumber( '0xe1261b9996c5582a4352065aa269d40e74a91927') ;
+var _pongAddress =  web3.toBigNumber( '0x4d6412ebac502b70776a902c03f8775b3007f70d') ;
 
 var pingContract = web3.eth.contract([{
     "constant": false,
@@ -168,5 +166,18 @@ var ping = pingContract.new(
             console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
         }
     });
+    
+> Contract mined! Address: 0x17368ba7a5e05d4204edc1692dc875fbacf90245
+[object Object]
+> 
+> pong.getPongvalConstant();
+-87		// pong knows its pongval									
+> ping.getPongvalConstant();
+-1		// ping doesn't know the new value yet
+> ping.getPongvalRemote.sendTransaction({from:eth.coinbase,gas:1000000});
+"0xaad73ff006032e59d8a84055528f1361e6cfe02a7cf44acf61fcaed334b3a097"
+> ping.getPongvalConstant();
+-87     // now ping knows the pongval from the transactional return value.
+> 
     
     */
