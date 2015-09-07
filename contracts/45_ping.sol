@@ -9,7 +9,7 @@
 
 contract PongvalRetriever {
  	int8 pongval_tx_retrieval_attempted = 0;
-	function getPongvalTransactional() public returns (int8){
+	function getPongvalTransactional() public returns (int8){	// tells Ping how to interact with Pong.
 		pongval_tx_retrieval_attempted = -1;
 		return pongval_tx_retrieval_attempted;
 	}
