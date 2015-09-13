@@ -1,3 +1,8 @@
+// This contract creates a 9x9 map of Tile objects. 
+// Each tile has an elevation value (as well as an owner and descriptorContract which aren't used here)
+// 
+// In the constructor, the elevations are set to standard values via for loops.
+
 contract StructAndFor {
 
     address creator;
