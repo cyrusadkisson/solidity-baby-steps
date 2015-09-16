@@ -11,10 +11,9 @@
 
 contract Descriptor {
     
-	function getDescription() constant returns (int16[10]){	
-		int16[10] somevar;
-		somevar[0] = 0; somevar[1] = 1; somevar[2] = 2; somevar[3] = 3; somevar[4] = 4;
-		somevar[5] = 5; somevar[6] = 6; somevar[7] = 7; somevar[8] = 8; somevar[9] = 9; 
+	function getDescription() constant returns (uint16[5]){	
+		uint16[5] somevar;
+		//somevar = 456; 
 		return somevar;
 	}
 }
@@ -62,10 +61,11 @@ contract ArrayPasser {
    /*** 
     * 4. get Description of a tile at x,y
     ***/ 
+    uint16[5] anothervar;
     function getTileDescription(uint8 x, uint8 y)
     {
     	Descriptor desc = tiles[x][y].descriptor;       // get the descriptor for this tile
-    	int16[10] memory description = desc.getDescription();  // get the description from the descriptor *** THIS IS THE PROBLEMATIC LINE ***
+    	anothervar = desc.getDescription();  // get the description from the descriptor
     	
     	// TODO validate the description
     	// TODO convert it to JSON

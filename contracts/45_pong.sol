@@ -152,8 +152,9 @@ var pong = pongContract.new(
             console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
         }
     });
-
-var _pongAddress = web3.toBigNumber('0xbfb1316ab1b8e9a2a39c1c96ad325ea80c9e041f');
+																					// ****************************************************************** IMPORTANT!!!!!
+var _pongAddress = web3.toBigNumber('0xbfb1316ab1b8e9a2a39c1c96ad325ea80c9e041f');  // ****************************************************************** IMPORTANT!!!!!
+																					// ****************************************************************** IMPORTANT!!!!!
 
 var pingContract = web3.eth.contract([{
     "constant": false,

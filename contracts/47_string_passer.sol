@@ -18,7 +18,7 @@ contract Descriptor {
 	}
 }
 
-contract ArrayPasser {
+contract StringPasser {
 
     address creator;
     
@@ -43,7 +43,7 @@ contract ArrayPasser {
      * 3. Upon construction, initialize the internal map elevations.
      *      The Descriptors start uninitialized.
      ***/
-    function ArrayPasser(uint8[] incmap) 
+    function StringPasser(uint8[] incmap) 
     {
         creator = msg.sender;
         uint counter = 0;
