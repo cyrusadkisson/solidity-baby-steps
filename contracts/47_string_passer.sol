@@ -61,11 +61,10 @@ contract StringPasser {
    /*** 
     * 4. get Description of a tile at x,y
     ***/ 
-    string anothervar;
     function getTileDescription(uint8 x, uint8 y)
     {
     	Descriptor desc = tiles[x][y].descriptor;       // get the descriptor for this tile
-    	anothervar = desc.getDescription();  // get the description from the descriptor
+    	string anothervar = desc.getDescription();  // get the description from the descriptor
     	
     	// TODO validate the description
     	// TODO convert it to JSON
