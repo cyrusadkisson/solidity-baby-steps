@@ -16,6 +16,7 @@ contract Descriptor {
 contract Bytes32Passer {
 
     address creator;
+    bytes savedbytes;
     bytes32 savedvar;
     string savedstring;
     Descriptor descriptor;
@@ -25,16 +26,28 @@ contract Bytes32Passer {
         creator = msg.sender;
     }
     
-    function getTileDescription(uint8 x, uint8 y)
+    function getDescription()
     {
     	savedvar = descriptor.getDescription();  // get the description from the descriptor
-    	savedstring = string(savedvar);
+    	uint8 x = 0;
+    	while(x < 32)
+    	{
+    		savedbytes.length++;
+    		savedbytes[x] = savedvar[x];
+    		x++;
+    	}	
+    	savedstring = string(savedbytes); // convert bytes to string
     	return; 
     }
     
     function getSavedVar() constant returns (bytes32)
     {
     	return savedvar;
+    }
+    
+    function getSavedBytes() constant returns (bytes)
+    {
+    	return savedbytes;
     }
     
     function getSavedString() constant returns (string)

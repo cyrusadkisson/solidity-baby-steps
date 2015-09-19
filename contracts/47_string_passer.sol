@@ -6,7 +6,7 @@
  *    \  /\  / | | || |\ \| |\  |_| |_| |\  | |_\ \
  *     \/  \/\_| |_/\_| \_\_| \_/\___/\_| \_/\____/
  *                                                 
- *   This contract DOES NOT WORK.                                       
+ *   This contract DOES NOT WORK. Dynamically sized types cannot be returned (incl. "string" and "bytes").                                      
  */
 
 contract Descriptor {
