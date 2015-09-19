@@ -23,7 +23,7 @@ contract basicInfoGetter {
 	}
 	
 	function getCurrentGaslimit() constant returns (uint)  // the most gas that can be spent on any given transaction right now
-	{													   // or the most gas that can be spent, globally, on each block?
+	{													  
 		return block.gaslimit;
 	}
 	
@@ -34,17 +34,12 @@ contract basicInfoGetter {
     
     function getBlockTimestamp() constant returns (uint) // returns current block timestamp in SECONDS (not ms) from epoch
     {													
-    	return block.timestamp; // also "now" == "block.timestamp", as in "return now;"
+    	return block.timestamp; 						 // also "now" == "block.timestamp", as in "return now;"
     }
     
     function getMsgData() constant returns (bytes) 		// The data of a call to this function. Always returns "0xc8e7ca2e" for me.
     {										            // adding an input parameter would probably change it with each diff call?
     	return msg.data;
-    }
-    
-    function getMsgGas() constant returns (uint)        // Gas remaining on this call. Always returns 49978451 for me.
-    {													// Would adding an input parameter change this value?
-    	return msg.gas;
     }
     
     function getMsgSender() constant returns (address)  // Returns the address of whomever made this call
@@ -55,6 +50,19 @@ contract basicInfoGetter {
     function getMsgValue() constant returns (uint)		// returns amt of wei sent with this call
     {
     	return msg.value;
+    }
+    
+    /***  A note about gas and gasprice:
+     
+     Every transaction must specify a quantity of "gas" that it is willing to consume (called startgas), 
+     and the fee that it is willing to pay per unit gas (gasprice). At the start of execution, 
+     startgas * gasprice ether are removed from the transaction sender's account. 
+     
+     */
+    
+    function getMsgGas() constant returns (uint)        
+    {													
+    	return msg.gas;
     }
     
 	function getTxGasprice() constant returns (uint) 	// "gasprice" is the amount of gas the sender was *willing* to pay. 50000000 for me. (geth default)
