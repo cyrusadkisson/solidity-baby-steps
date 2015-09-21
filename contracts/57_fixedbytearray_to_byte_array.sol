@@ -7,8 +7,10 @@
  *     \/  \/\_| |_/\_| \_\_| \_/\___/\_| \_/\____/
  *                                                 
  *   This contract DOES NOT WORK. It was/is an experiment
- *   to see if I could convert an address into its string equivalent. 
- *   (I couldn't because string concatenation is not implemented yet.)                                     
+ *   to try and manually convert a fixed byte array (e.g. byte4)
+ *   into byte[4] using hard maths. A strange thing happened: 
+ *   Filling the byte[4] array doesn't work.
+ *                                
  */
 
 contract Bytes4ToByteArrayWithLength4 {
