@@ -1,5 +1,5 @@
 // This contract demonstrates a simple non-constant (transactional) function you can call from geth.
-// increment() takes ONE parameter and merely increment the "iteration" value by that much. 
+// increment() takes ONE parameter and merely increments the "iteration" value by that much. 
 // see below for the geth command to send the parameter to the increment(int howmuch) function. 
 
 contract Incrementer2 {
