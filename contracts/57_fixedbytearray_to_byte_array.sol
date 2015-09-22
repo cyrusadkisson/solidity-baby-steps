@@ -9,7 +9,7 @@
  *   This contract DOES NOT WORK. It was/is an experiment
  *   to try and manually convert a fixed byte array (e.g. byte4)
  *   into byte[4] using hard maths. A strange thing happened: 
- *   Filling the byte[4] array doesn't work.
+ *   Filling the byte[4] array doesn't work. See below. 9/20/2015
  *                                
  */
 

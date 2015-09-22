@@ -6,7 +6,8 @@
  *    \  /\  / | | || |\ \| |\  |_| |_| |\  | |_\ \
  *     \/  \/\_| |_/\_| \_\_| \_/\___/\_| \_/\____/
  *                                                 
- *   This contract DOES NOT WORK.                                       
+ *   This contract DOES NOT WORK due to a solidity bug.
+ *   It should compile but does not. 9/20/2015                                     
  */
 
 contract Descriptor {
