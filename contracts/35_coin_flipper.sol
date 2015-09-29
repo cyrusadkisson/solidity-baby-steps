@@ -71,9 +71,10 @@ contract CoinFlipper {
     	
     	lastblocknumberused = block.number - 1 ;
     	lastblockhashused = block.blockhash(lastblocknumberused);
+    	uint128 lastblockhashused_uint = uint128(lastblockhashused) + wager;
+    	uint hashymchasherton = sha(lastblockhashused_uint);
     	
-	   	uint hash = sha(wager);
-	    if( hash % 2 == 0 )
+	    if( hashymchasherton % 2 == 0 )
 	   	{
 	    	lastgainloss = int(wager) * -1;
 	    	lastresult = "loss";
