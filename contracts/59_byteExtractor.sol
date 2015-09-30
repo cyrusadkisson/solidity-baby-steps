@@ -1,18 +1,3 @@
-/***
- *     _    _  ___  ______ _   _ _____ _   _ _____ 
- *    | |  | |/ _ \ | ___ \ \ | |_   _| \ | |  __ \
- *    | |  | / /_\ \| |_/ /  \| | | | |  \| | |  \/
- *    | |/\| |  _  ||    /| . ` | | | | . ` | | __ 
- *    \  /\  / | | || |\ \| |\  |_| |_| |\  | |_\ \
- *     \/  \/\_| |_/\_| \_\_| \_/\___/\_| \_/\____/
- *                                                 
- *   This contract DOES NOT WORK. It was/is an experiment
- *   to try and manually convert a fixed byte array (e.g. byte4)
- *   into byte[4] using hard maths. A strange thing happened: 
- *   Filling the byte[4] array doesn't work. See below. 9/20/2015
- *                                
- */
-
 contract ByteExtractor {
 
     address creator;
