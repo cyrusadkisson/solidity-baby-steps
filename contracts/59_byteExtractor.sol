@@ -21,17 +21,43 @@ contract ByteExtractor {
         creator = msg.sender;
     }
     
-    // TODO getByteFromByte32 (can use getDigit twice, multiply the more significant one * 16 and add them together)
+    function getByteFromByte8(bytes8 _b8, uint8 byteindex) public constant returns(byte) {
+    	uint numdigits = 16;
+    	uint buint = uint(_b8);
+    	uint upperpowervar = 16 ** (numdigits - (byteindex*2)); 		// @i=0 upperpowervar=16**64, @i=1 upperpowervar=16**62, @i upperpowervar=16**60
+    	uint lowerpowervar = 16 ** (numdigits - 2 - (byteindex*2));		// @i=0 upperpowervar=16**62, @i=1 upperpowervar=16**60, @i upperpowervar=16**58
+    	uint postheadchop = buint % upperpowervar; 				// @i=0 _b32=a1b2c3d4... postheadchop=a1b2c3d4, @i=1 postheadchop=b2c3d4, @i=2 postheadchop=c3d4
+    	uint remainder = postheadchop % lowerpowervar; 			// @i=0 remainder=b2c3d4, @i=1 remainder=c3d4, @i=2 remainder=d4
+    	uint evenedout = postheadchop - remainder; 				// @i=0 evenedout=a1000000, @i=1 remainder=b20000, @i=2 remainder=c300
+    	uint b = evenedout / lowerpowervar; 					// @i=0 b=a1, @i=1 b=b2, @i=2 b=c3
+    	return byte(b);
+    }
+    
+    function getByteFromByte32(bytes32 _b32, uint8 byteindex) public constant returns(byte) {
+    	uint numdigits = 64;
+    	uint buint = uint(_b32);
+    	uint upperpowervar = 16 ** (numdigits - (byteindex*2)); 		// @i=0 upperpowervar=16**64 (SEE EXCEPTION BELOW), @i=1 upperpowervar=16**62, @i upperpowervar=16**60
+    	uint lowerpowervar = 16 ** (numdigits - 2 - (byteindex*2));		// @i=0 upperpowervar=16**62, @i=1 upperpowervar=16**60, @i upperpowervar=16**58
+    	uint postheadchop;
+    	if(byteindex == 0)
+    		postheadchop = buint; 								//for byteindex 0, buint is just the input number. 16^64 is out of uint range, so this exception has to be made.
+    	else
+    		postheadchop = buint % upperpowervar; 				// @i=0 _b32=a1b2c3d4... postheadchop=a1b2c3d4, @i=1 postheadchop=b2c3d4, @i=2 postheadchop=c3d4
+    	uint remainder = postheadchop % lowerpowervar; 			// @i=0 remainder=b2c3d4, @i=1 remainder=c3d4, @i=2 remainder=d4
+    	uint evenedout = postheadchop - remainder; 				// @i=0 evenedout=a1000000, @i=1 remainder=b20000, @i=2 remainder=c300
+    	uint b = evenedout / lowerpowervar; 					// @i=0 b=a1, @i=1 b=b2, @i=2 b=c3
+    	return byte(b);
+    }
     
     function getDigitFromByte32(bytes32 _b32, uint8 index) public constant returns(uint) {
     	uint numdigits = 64;
     	uint buint = uint(_b32);
     	uint upperpowervar = 16 ** (numdigits - index); 		// @i=0 upperpowervar=16**64, @i=1 upperpowervar=16**63, @i upperpowervar=16**62
-    	uint lowerpowervar = 16 ** (numdigits - 1 - index);	// @i=0 upperpowervar=16**63, @i=1 upperpowervar=16**62, @i upperpowervar=16**61
+    	uint lowerpowervar = 16 ** (numdigits - 1 - index);		// @i=0 upperpowervar=16**63, @i=1 upperpowervar=16**62, @i upperpowervar=16**61
     	uint postheadchop = buint % upperpowervar; 				// @i=0 _b32=a1b2c3d4... postheadchop=a1b2c3d4, @i=1 postheadchop=b2c3d4, @i=2 postheadchop=c3d4
     	uint remainder = postheadchop % lowerpowervar; 			// @i=0 remainder=b2c3d4, @i=1 remainder=c3d4, @i=2 remainder=d4
     	uint evenedout = postheadchop - remainder; 				// @i=0 evenedout=a1000000, @i=1 remainder=b20000, @i=2 remainder=c300
-    	uint b = evenedout / lowerpowervar; 						// @i=0 b=a1, @i=1 b=b2, @i=2 b=c3
+    	uint b = evenedout / lowerpowervar; 					// @i=0 b=a1, @i=1 b=b2, @i=2 b=c3
     	return b;
     }
     
