@@ -9,7 +9,7 @@ contract MsgValueToBytes20 is mortal {
     function convertMsgValueToBytes20() 
     {
     	initialval = msg.value;
-    	if(msg.value <= 0 || msg.value > 1208925819614629174706175) // 1 wei up to (2^80 - 1) wei is the valid uint80 range
+    	if(msg.value > 0 || msg.value < 1208925819614629174706176) // 1 wei up to (2^80 - 1) wei is the valid uint80 range
     	{
     		uint80val = uint80(msg.value);
     		finalval = bytes20(uint80val);
@@ -39,10 +39,10 @@ contract MsgValueToBytes20 is mortal {
 msgvaluetobytes20.convertMsgValueToBytes20.sendTransaction({from:eth.coinbase,value:web3.toWei(.001,"ether")});
 
 > msgvaluetobytes20.getInitialval();
-1000000000000000
+10000
 > msgvaluetobytes20.getUint80val();
-0
+10000
 > msgvaluetobytes20.getFinalval();
-"0x0000000000000000000000000000000000000000"
+"0x0000000000000000000000000000000000002710"
 
 */
