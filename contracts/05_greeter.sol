@@ -19,8 +19,8 @@ contract Greeter         // The contract definition. A constructor of the same n
         return greeting;
     }
     
-    function getBlockNumber() constant returns (uint) 
-    {
+    function getBlockNumber() constant returns (uint) // this doesn't have anything to do with the act of greeting
+    {													// just demonstrating return of some global variable
         return block.number;
     }
     
