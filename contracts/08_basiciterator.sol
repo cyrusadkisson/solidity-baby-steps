@@ -18,8 +18,8 @@ contract BasicIterator {
         }
     }
     
-    function getSum() constant returns (uint)    
-    {
+    function getSum() constant returns (uint)  // "constant" just means this function returns something to the caller
+    {                                          // which is immediately followed by what type gets returned, in this case a full uint256
     	uint8 sum = 0;
     	uint8 x = 0;
     	while(x < integers.length)
