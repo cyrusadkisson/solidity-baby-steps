@@ -35,8 +35,8 @@ contract Greeter         // The contract definition. A constructor of the same n
     
     function kill()
     { 
-        if (msg.sender == creator)
-            suicide(creator);  // kills this contract and sends remaining funds back to creator
+        if (msg.sender == creator)  // only allow this action if the account sending the signal is the creator
+            suicide(creator);       // kills this contract and sends remaining funds back to creator
     }
 
 }
