@@ -15,13 +15,13 @@ contract creatorBalanceChecker {
         creatorbalance = creator.balance;
     }
 
-	function getContractAddress() constant returns (address) 
-	{
-		return this;
-	}
-
-	function getCreatorBalance() constant returns (uint)     // Will return the creator's balance AT THE TIME THIS CONTRACT WAS CREATED
-	{
+    function getContractAddress() constant returns (address) 
+    {
+        return this;
+    }
+	
+    function getCreatorBalance() constant returns (uint)     // Will return the creator's balance AT THE TIME THIS CONTRACT WAS CREATED
+    {
         return creatorbalance;
     }
     
