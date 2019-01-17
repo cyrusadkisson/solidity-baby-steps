@@ -21,13 +21,13 @@ contract Greeter {
         greeting = _greeting;
     }
 
-    function greet() public constant returns (string) {
+    function greet() public view returns (string) {
         return greeting;
     }
 
     // this doesn't have anything to do with the act of greeting
     // just demonstrating return of some global variable
-    function getBlockNumber() public constant returns (uint) {
+    function getBlockNumber() public view returns (uint) {
         return block.number;
     }
 

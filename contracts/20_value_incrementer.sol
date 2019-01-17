@@ -1,35 +1,37 @@
 // This contract demonstrates a simple non-constant (transactional) function you can call from geth.
-// increment() takes no parameters and merely increments the "iteration" value. 
+// increment() takes no parameters and merely increments the "iteration" value.
+
+pragma solidity ^0.4.23;
 
 contract Incrementer {
 
     address creator;
     uint iteration;
 
-    function Incrementer() public 
+    function Incrementer() public
     {
-        creator = msg.sender; 
+        creator = msg.sender;
         iteration = 0;
     }
 
-    function increment() 
+    function increment()
     {
         iteration = iteration + 1;
     }
-    
-    function getIteration() constant returns (uint) 
+
+    function getIteration() view returns (uint)
     {
         return iteration;
     }
-    
+
     /**********
-     Standard kill() function to recover funds 
+     Standard kill() function to recover funds
     **********/
-    
-    function kill() 
-    { 
+
+    function kill()
+    {
         if (msg.sender == creator)
             suicide(creator);  // kills this contract and sends remaining funds back to creator
     }
-    
+
 }
